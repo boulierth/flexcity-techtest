@@ -1,0 +1,107 @@
+{
+  "info": {
+    "_postman_id": "a5af8bc7-1ee0-45ca-8c2c-795e78b5a497",
+    "name": "Flexcity technical test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52996742",
+    "_collection_link": "https://go.postman.co/collection/52996742-a5af8bc7-1ee0-45ca-8c2c-795e78b5a497?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "activate greedy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"date\": \"2026-03-11\",\r\n    \"volume\": 150\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/activate?policy=greedy",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "activation",
+            "activate"
+          ],
+          "query": [
+            {
+              "key": "policy",
+              "value": "greedy"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "activate knapsack solver",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"date\": \"2026-03-11\",\r\n    \"volume\": 150\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/activate?policy=knapsack_solver",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "activation",
+            "activate"
+          ],
+          "query": [
+            {
+              "key": "policy",
+              "value": "knapsack_solver"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "available-capacity",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/available-capacity?date=today",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "activation",
+            "available-capacity"
+          ],
+          "query": [
+            {
+              "key": "date",
+              "value": "today"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
