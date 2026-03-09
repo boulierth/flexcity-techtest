@@ -12,10 +12,10 @@ api = NinjaAPI()
 
 
 @api.post("/activate", response=List[AssetSchema] | ErrorSchema)
-def activate(request, data: ActivationIn, policy: str = None):
+def activate(request, data: ActivationIn, strategy: str = None):
 
     try:
-        activated_assets = get_activated_assets(data, policy)
+        activated_assets = get_activated_assets(data, strategy)
     except Exception as e:
         return {"error": str(e)}
     return activated_assets
@@ -31,7 +31,9 @@ def available_assets(request, date: str = None):
                 converted_date = datetime.today().date()
             case "tomorrow":
                 converted_date = datetime.today().date() + timedelta(days=1)
-            case str() as d if (pattern := r"\d{4}-\d{2}-\d{2}") and re.fullmatch(pattern, d):
+            case str() as d if (pattern := r"\d{4}-\d{2}-\d{2}") and re.fullmatch(
+                pattern, d
+            ):
                 converted_date = datetime.strptime(d, "%Y-%m-%d").date()
             case _:
                 raise HttpError(400, "Invalid date format. Use YYYY-MM-DD.")

@@ -10,7 +10,7 @@ from .knapsack_solver import get_assets_knapsack_solver
 from .greedy import get_assets_greedy
 
 
-def get_activated_assets(data: ActivationIn, policy: str = None) -> List[AssetSchema]:
+def get_activated_assets(data: ActivationIn, strategy: str = None) -> List[AssetSchema]:
 
     activable_assets = Asset.objects.filter(
         availability__in=Availability.objects.filter(date=data.date)
@@ -20,9 +20,12 @@ def get_activated_assets(data: ActivationIn, policy: str = None) -> List[AssetSc
 
     if available_capacity < data.volume:
         raise Exception("Not enough capacity available")
+    
+    logging.info(f"Activating {data.volume} volume for date {data.date}")
 
-    ## select policy
-    match policy or settings.DEFAULT_POLICY:
+    strategy = strategy or settings.DEFAULT_STRATEGY
+    ## select strategy
+    match strategy:
         case "all":
             activated_assets = activable_assets
 
@@ -32,6 +35,9 @@ def get_activated_assets(data: ActivationIn, policy: str = None) -> List[AssetSc
         case "knapsack_solver":
             activated_assets = get_assets_knapsack_solver(activable_assets, data.volume)
 
-    logging.info(f"Activated {len(activated_assets)} assets with total capacity {sum([asset.volume for asset in activated_assets])} and total cost {sum([asset.activation_cost for asset in activated_assets])}")
+    logging.info(
+        f"Activated {len(activated_assets)} assets with total capacity {sum([asset.volume for asset in activated_assets])} \
+and total cost {sum([asset.activation_cost for asset in activated_assets])} using strategy {strategy}"
+    )
 
     return activated_assets

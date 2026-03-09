@@ -1,8 +1,8 @@
-
 from django.test import TestCase, Client
 from flexcity_techtest.activation.models import Asset, Availability
 from datetime import date
 from unittest.mock import patch
+
 
 class ApiTests(TestCase):
     def setUp(self):
@@ -29,18 +29,24 @@ class ApiTests(TestCase):
             "volume": 10,
             "date": str(date.today()),
         }
-        response = self.client.post("/api/activate", payload, content_type="application/json")
+        response = self.client.post(
+            "/api/activate", payload, content_type="application/json"
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTrue(any(a["name"] == "Test Asset" for a in response.json()))
 
     @patch("flexcity_techtest.activation.business.strategy.get_activated_assets")
     def test_activate_endpoint_error(self, mock_get_activated_assets):
-        mock_get_activated_assets.side_effect = Exception("Not enough capacity available")
+        mock_get_activated_assets.side_effect = Exception(
+            "Not enough capacity available"
+        )
         payload = {
             "volume": 10,
             "date": str(date.today()),
         }
-        response = self.client.post("/api/activate", payload, content_type="application/json")
+        response = self.client.post(
+            "/api/activate", payload, content_type="application/json"
+        )
         self.assertEqual(response.status_code, 200)
         self.assertIn("error", response.json())
         self.assertEqual(response.json()["error"], "Not enough capacity available")

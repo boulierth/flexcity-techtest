@@ -22,19 +22,19 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/api/activate?policy=greedy",
+          "raw": "http://localhost:8000/api/activate?strategy=greedy",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "8000",
           "path": [
-            "activation",
+            "api",
             "activate"
           ],
           "query": [
             {
-              "key": "policy",
+              "key": "strategy",
               "value": "greedy"
             }
           ]
@@ -57,19 +57,19 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/api/activate?policy=knapsack_solver",
+          "raw": "http://localhost:8000/api/activate?strategy=knapsack_solver",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "8000",
           "path": [
-            "activation",
+            "api",
             "activate"
           ],
           "query": [
             {
-              "key": "policy",
+              "key": "strategy",
               "value": "knapsack_solver"
             }
           ]
@@ -90,7 +90,7 @@
           ],
           "port": "8000",
           "path": [
-            "activation",
+            "api",
             "available-capacity"
           ],
           "query": [

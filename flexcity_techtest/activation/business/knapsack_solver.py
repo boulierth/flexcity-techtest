@@ -1,5 +1,6 @@
 from ortools.algorithms.python import knapsack_solver
 
+
 def get_assets_knapsack_solver(activable_assets, volume):
 
     # To make activation_cost integers, we can multiply them by a large constant. This does not change the optimal solution, but allows us to use the knapsack solver that only accepts integers.

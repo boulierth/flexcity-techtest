@@ -128,9 +128,9 @@ LOGGING = {
     "root": {
         "handlers": ["console"],
         "level": "INFO",
-    }
+    },
 }
 
-# DEFAULT_POLICY = "all"
-# DEFAULT_POLICY = "greedy"
-DEFAULT_POLICY = "knapsack_solver"
+# DEFAULT_STRATEGY = "all"
+# DEFAULT_STRATEGY = "greedy"
+DEFAULT_STRATEGY = "knapsack_solver"

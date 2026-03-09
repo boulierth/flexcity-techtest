@@ -4,22 +4,25 @@ from flexcity_techtest.activation.models import Asset, Availability
 import random
 from datetime import date, timedelta
 
+
 class Command(BaseCommand):
     help = "Generate random assets using Faker"
 
     def add_arguments(self, parser):
-        parser.add_argument('--count', type=int, default=10, help='Number of assets to create')
+        parser.add_argument(
+            "--count", type=int, default=10, help="Number of assets to create"
+        )
 
     def handle(self, *args, **options):
         fake = Faker()
-        count = options['count']
+        count = options["count"]
         created = 0
 
         for _ in range(count):
             volume = random.randint(1, 100)
             activation_cost = round(random.uniform(1, 20) * volume, 3)
             asset = Asset(
-                code=fake.unique.bothify(text='???-#####'),
+                code=fake.unique.bothify(text="???-#####"),
                 name=fake.company(),
                 volume=volume,
                 activation_cost=activation_cost,
@@ -33,5 +36,6 @@ class Command(BaseCommand):
                 Availability.objects.create(asset=asset, date=avail_date)
 
             created += 1
-        self.stdout.write(self.style.SUCCESS(f"Created {created} assets with availabilities."))
-
+        self.stdout.write(
+            self.style.SUCCESS(f"Created {created} assets with availabilities.")
+        )

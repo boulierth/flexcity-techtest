@@ -8,6 +8,7 @@ from .models import Asset, Availability
 class AvailabilityInline(admin.TabularInline):
     model = Availability
 
+
 @admin.action(description="Make selected assets available today")
 def activate_assets(modeladmin, request, queryset):
     today = datetime.date.today()
