@@ -13,7 +13,7 @@
     - `poetry run python manage.py createsuperuser`
     - Follow the prompts to set up a username and password for the admin account.
 5. **(optional) Generate random assets for testing**:
-   - `poetry run python manage.py generate_random_assets --count 100`
+   - `poetry run python manage.py generate_assets --count 100`
 6. **Run the server**:
    - `poetry run python manage.py runserver`
 
